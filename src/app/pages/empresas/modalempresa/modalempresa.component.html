@@ -1,0 +1,97 @@
+<div class="content">
+  <div class="row">
+    <div class=" col-sm-12 col-md-12 col-lg-12">
+      <div class="card card-chart">
+        <div class="card-header">
+          <div class="row">
+            <div class="col" align="center">
+              <h3 class="card-tittle">{{ tittle }} EMPRESA</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form enctype="multipart/form-data" method="POST" *ngIf="tittle == 'CREAR'"
+            (ngSubmit)="onSubmitCreate(f)" #f="ngForm"  class="container">
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="InputNit" class="control-label">Nit</label>
+                  <input type="text" class="form-control" placeholder="Digite el Nit"
+                    name="emp_Nit" [(ngModel)]="company.emp_Nit"
+                    [ngClass]="{'is-invalid': f.submitted && f.controls['emp_Nit'].errors}" required>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label for="InputNombre" class="control-label">Nombre</label>
+                  <input type="text" class="form-control" placeholder="Digite el Nombre"
+                    name="emp_Nombre" [(ngModel)]="company.emp_Nombre"
+                    [ngClass]="{'is-invalid': f.submitted && f.controls['emp_Nombre'].errors}" required>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <br>
+                <button type="submit" class="btn btn-success">Crear</button>
+              </div>
+              <div class="col">
+                <br>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"
+                  (click)="activeModal.close('close')">Cerrar</button>
+              </div>
+            </div>
+          </form>
+
+          <form enctype="multipart/form-data" method="POST" *ngIf="tittle == 'ACTUALIZAR'"
+            (ngSubmit)="onSubmitUpdate(f)" #f="ngForm" class="container">
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="InputNit" class="control-label">Nit</label>
+                  <input type="text" class="form-control" placeholder="Digite el Nit"
+                    name="emp_Nit" [(ngModel)]="company2.emp_Nit"
+                    [ngClass]="{'is-invalid': f.submitted && f.controls['emp_Nit'].errors}" required>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label for="InputNombre" class="control-label">Nombre</label>
+                  <input type="text" class="form-control" placeholder="Digite el Nombre"
+                    name="emp_Nombre" [(ngModel)]="company2.emp_Nombre"
+                    [ngClass]="{'is-invalid': f.submitted && f.controls['emp_Nombre'].errors}" required>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="SelectEstado" class="control-label">Estado</label>
+                  <select class="form-control" placeholder="Seleccione Estado" name="emp_Estado"
+                    [(ngModel)]="company2.emp_Estado"
+                    value="{{ company2.emp_Estado }}">
+                    <option class="selectDark" value="">Seleccione...</option>
+                    <option class="selectDark" value="1">Activo</option>
+                    <option class="selectDark" value="0">Inactivo</option>
+                  </select>
+                </div>
+              </div>
+							<div class="col"></div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <br>
+                <button type="submit" class="btn btn-success">Actualizar</button>
+              </div>
+              <div class="col">
+                <br>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"
+                  (click)="activeModal.close('close')">Cerrar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

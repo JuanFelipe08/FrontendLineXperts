@@ -1,0 +1,133 @@
+<div class="content">
+  <div class="row">
+    <div class=" col-sm-12 col-md-12 col-lg-12">
+      <div class="card card-chart">
+        <div class="card-header">
+          <div class="row">
+            <div class="col" align="center">
+              <h3 class="card-tittle">{{ tittle }} TRANSPORTADORA</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form enctype="multipart/form-data" method="POST" *ngIf="tittle == 'CREAR'"
+            (ngSubmit)="onSubmitCreate(f)" #f="ngForm"  class="container">
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="InputNit" class="control-label">Nit</label>
+                  <input type="text" class="form-control" placeholder="Digite el Nit"
+                    name="tran_Nit" [(ngModel)]="transportadora.tran_Nit"
+                    [ngClass]="{'is-invalid': f.submitted && f.controls['tran_Nit'].errors}" required>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label for="InputPeso" class="control-label">Nombre</label>
+                  <input type="text" class="form-control" placeholder="Digite el Nombre"
+                    name="tran_Nombre" [(ngModel)]="transportadora.tran_Nombre"
+                    [ngClass]="{'is-invalid': f.submitted && f.controls['tran_Nombre'].errors}" required>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="SelectEstado" class="control-label">Empresa</label>
+                  <select class="form-control" name="emp_Codigo" [(ngModel)]="transportadora.emp_Codigo"
+                  [ngClass]="{'is-invalid': f.submitted && f.controls['emp_Codigo'].errors}"
+                  required>
+                    <option *ngFor="let company of listCompany" [value]="company.emp_Codigo">{{ company.emp_Nombre }}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-1 iconsPadding colorIcons" title="Agregar">
+                <br>
+                <svg width="50" height="50" fill="currentColor" class="bi bi-plus-circle-fill manito" viewBox="0 0 30 30" (click)="createEmpresa()">
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                </svg>
+              </div>
+              <div class="col"></div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <br>
+                <button type="submit" class="btn btn-success">Crear</button>
+              </div>
+              <div class="col">
+                <br>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"
+                  (click)="activeModal.close('close')">Cerrar</button>
+              </div>
+            </div>
+          </form>
+
+          <form enctype="multipart/form-data" method="POST" *ngIf="tittle == 'ACTUALIZAR'"
+            (ngSubmit)="onSubmitUpdate(f)" #f="ngForm" class="container">
+						<div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="InputNit" class="control-label">Nit</label>
+                  <input type="text" class="form-control" placeholder="Digite el Nit"
+                    name="tran_Nit" [(ngModel)]="transportadora2.tran_Nit"
+                    [ngClass]="{'is-invalid': f.submitted && f.controls['tran_Nit'].errors}" required>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label for="InputPeso" class="control-label">Nombre</label>
+                  <input type="text" class="form-control" placeholder="Digite el Nombre"
+                    name="tran_Nombre" [(ngModel)]="transportadora2.tran_Nombre"
+                    [ngClass]="{'is-invalid': f.submitted && f.controls['tran_Nombre'].errors}" required>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="SelectEstado" class="control-label">Empresa</label>
+                  <select class="form-control" name="emp_Codigo" [(ngModel)]="transportadora2.emp_Codigo"
+                  [ngClass]="{'is-invalid': f.submitted && f.controls['emp_Codigo'].errors}"
+                  required>
+                    <option *ngFor="let company of listCompany" [value]="company.emp_Codigo">{{ company.emp_Nombre }}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-1 iconsPadding colorIcons" title="Agregar">
+                <br>
+                <svg width="50" height="50" fill="currentColor" class="bi bi-plus-circle-fill manito" viewBox="0 0 30 30" (click)="createEmpresa()">
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                </svg>
+              </div>
+              <div class="col">
+								<div class="col">
+									<div class="form-group">
+										<label for="SelectEstado" class="control-label">Estado</label>
+										<select class="form-control" placeholder="Seleccione Estado" name="tran_Estado"
+											[(ngModel)]="transportadora2.tran_Estado"
+											value="{{ transportadora2.tran_Estado }}">
+											<option class="selectDark" value="">Seleccione...</option>
+											<option class="selectDark" value="1">Activo</option>
+											<option class="selectDark" value="0">Inactivo</option>
+										</select>
+									</div>
+								</div>
+							</div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <br>
+                <button type="submit" class="btn btn-success">Actualizar</button>
+              </div>
+              <div class="col">
+                <br>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"
+                  (click)="activeModal.close('close')">Cerrar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

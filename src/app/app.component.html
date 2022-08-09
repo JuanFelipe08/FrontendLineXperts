@@ -1,0 +1,32 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  <a class="navbar-brand" [routerLink]="['/home']" routerLinkActive="router-link-active">Desarrollo Despachos</a>
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+  </button>
+  <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    <ul class="navbar-nav mr-auto">
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/home']" routerLinkActive="router-link-active" >Inicio</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/empresa']" routerLinkActive="router-link-active">Empresas</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/producto']" routerLinkActive="router-link-active">Productos</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/transportadora']" routerLinkActive="router-link-active">Transportadoras</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/vehiculo']" routerLinkActive="router-link-active">Vehiculos</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/conductor']" routerLinkActive="router-link-active">Conductores</a>
+      </li>
+      <li class="nav-item active">
+        <a class="nav-link" [routerLink]="['/pesaje']" routerLinkActive="router-link-active">Pesajes</a>
+      </li>
+    </ul>
+  </div>
+</nav>
+<router-outlet></router-outlet>

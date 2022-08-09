@@ -1,0 +1,115 @@
+<div class="content">
+  <div class="row">
+    <div class=" col-sm-12 col-md-12 col-lg-12">
+      <div class="card card-chart">
+        <div class="card-header">
+          <div class="row">
+            <div class="col" align="center">
+              <h3 class="card-tittle">{{ tittle }} VEHICULO</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form enctype="multipart/form-data" method="POST" *ngIf="tittle == 'CREAR'"
+            (ngSubmit)="onSubmitCreate(f)" #f="ngForm"  class="container">
+            <div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="InputNit" class="control-label">Placa</label>
+                  <input type="text" class="form-control" placeholder="Digite la placa"
+                    name="veh_Placa" [(ngModel)]="vehiculo.veh_Placa"
+                    [ngClass]="{'is-invalid': f.submitted && f.controls['veh_Placa'].errors}" required>
+                </div>
+              </div>
+              <div class="col">
+                <div class="form-group">
+                  <label for="SelectEstado" class="control-label">Transportadora</label>
+                  <select class="form-control" name="tran_Codigo" [(ngModel)]="vehiculo.tran_Codigo" placeholder="Seleccione Transportadora"
+                  [ngClass]="{'is-invalid': f.submitted && f.controls['tran_Codigo'].errors}"
+                  required>
+                    <option *ngFor="let company of listCompany" [value]="company.tran_Codigo">{{ company.tran_Nombre }}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-1 iconsPadding colorIcons" title="Agregar">
+                <br>
+                <svg width="50" height="50" fill="currentColor" class="bi bi-plus-circle-fill manito" viewBox="0 0 30 30" (click)="createEmpresa()">
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <br>
+                <button type="submit" class="btn btn-success">Crear</button>
+              </div>
+              <div class="col">
+                <br>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"
+                  (click)="activeModal.close('close')">Cerrar</button>
+              </div>
+            </div>
+          </form>
+
+          <form enctype="multipart/form-data" method="POST" *ngIf="tittle == 'ACTUALIZAR'"
+            (ngSubmit)="onSubmitUpdate(f)" #f="ngForm" class="container">
+						<div class="row">
+              <div class="col">
+                <div class="form-group">
+                  <label for="InputNit" class="control-label">Placa</label>
+                  <input type="text" class="form-control" placeholder="Digite la placa"
+                    name="veh_Placa" [(ngModel)]="vehiculo2.veh_Placa"
+                    [ngClass]="{'is-invalid': f.submitted && f.controls['veh_Placa'].errors}" required>
+                </div>
+              </div>
+							<div class="col">
+                <div class="form-group">
+                  <label for="SelectEstado" class="control-label">Transportadora</label>
+                  <select class="form-control" name="tran_Codigo" [(ngModel)]="vehiculo2.tran_Codigo" placeholder="Seleccione Transportadora"
+                  [ngClass]="{'is-invalid': f.submitted && f.controls['tran_Codigo'].errors}"
+                  required>
+                    <option *ngFor="let company of listCompany" [value]="company.tran_Codigo">{{ company.tran_Nombre }}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-1 iconsPadding colorIcons" title="Agregar">
+                <br>
+                <svg width="50" height="50" fill="currentColor" class="bi bi-plus-circle-fill manito" viewBox="0 0 30 30" (click)="createEmpresa()">
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                </svg>
+              </div>
+            </div>
+            <div class="row">              
+              <div class="col">
+								<div class="col">
+									<div class="form-group">
+										<label for="SelectEstado" class="control-label">Estado</label>
+										<select class="form-control" placeholder="Seleccione Estado" name="veh_Estado"
+											[(ngModel)]="vehiculo2.veh_Estado"
+											value="{{ vehiculo2.veh_Estado }}">
+											<option class="selectDark" value="">Seleccione...</option>
+											<option class="selectDark" value="1">Activo</option>
+											<option class="selectDark" value="0">Inactivo</option>
+										</select>
+									</div>
+								</div>
+							</div>
+							<div class="col"></div>
+            </div>
+            <div class="row">
+              <div class="col">
+                <br>
+                <button type="submit" class="btn btn-success">Actualizar</button>
+              </div>
+              <div class="col">
+                <br>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"
+                  (click)="activeModal.close('close')">Cerrar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,194 @@
+<div class="content">
+  <div class="row">
+    <div class=" col-sm-12 col-md-12 col-lg-12">
+      <div class="card card-chart">
+        <div class="card-header">
+          <div class="row">
+            <div class="col" align="center">
+              <h3 class="card-tittle">{{ tittle }} PESAJE</h3>
+            </div>
+          </div>
+        </div>
+        <div class="card-body">
+          <form enctype="multipart/form-data" method="POST" *ngIf="tittle == 'CREAR'"
+            (ngSubmit)="onSubmitCreate(f)" #f="ngForm"  class="container">
+            <div class="row">
+							<div class="col">
+								<div class="form-group">
+									<label for="SelectEstado" class="control-label">Tipo Pesaje</label>
+									<select class="form-control" placeholder="Seleccione Tipo Pesaje" name="pesa_Tipo_Pesaje"
+										[(ngModel)]="pesajes.pesa_Tipo_Pesaje"
+										value="{{ pesajes.pesa_Tipo_Pesaje }}">
+										<option class="selectDark" value="">Seleccione...</option>
+										<option class="selectDark" value="Entrada">Entrada</option>
+										<option class="selectDark" value="Salida">Salida</option>
+									</select>
+								</div>
+							</div>
+							<div class="col">
+                <div class="form-group">
+                  <label for="SelectEstado" class="control-label">Transportadora</label>
+                  <select class="form-control" name="tran_Codigo" [(ngModel)]="pesajes.tran_Codigo"
+                  [ngClass]="{'is-invalid': f.submitted && f.controls['tran_Codigo'].errors}"
+                  required>
+                    <option *ngFor="let company of listCompany" [value]="company.tran_Codigo">{{ company.tran_Nombre }}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-1 iconsPadding colorIcons" title="Agregar">
+                <br>
+                <svg width="50" height="50" fill="currentColor" class="bi bi-plus-circle-fill manito" viewBox="0 0 30 30" (click)="createEmpresa()">
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                </svg>
+              </div>
+            </div>
+						<div class="row">
+							<div class="col">
+                <div class="form-group">
+                  <label for="SelectEstado" class="control-label">Vehiculos</label>
+                  <select class="form-control" name="veh_Codigo" [(ngModel)]="pesajes.veh_Codigo"
+                  [ngClass]="{'is-invalid': f.submitted && f.controls['veh_Codigo'].errors}"
+                  required>
+                    <option *ngFor="let vehiculo of listVehiculo" [value]="vehiculo.veh_Codigo">{{ vehiculo.veh_Placa }}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-1 iconsPadding colorIcons" title="Agregar">
+                <br>
+                <svg width="50" height="50" fill="currentColor" class="bi bi-plus-circle-fill manito" viewBox="0 0 30 30" (click)="createVehiculo()">
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                </svg>
+              </div>
+							<div class="col">
+                <div class="form-group">
+                  <label for="SelectEstado" class="control-label">Conductor</label>
+                  <select class="form-control" name="cond_Codigo" [(ngModel)]="pesajes.cond_Codigo"
+                  [ngClass]="{'is-invalid': f.submitted && f.controls['cond_Codigo'].errors}"
+                  required>
+                    <option *ngFor="let conductor of listConductor" [value]="conductor.cond_Codigo">{{ conductor.cond_Nombre }}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-1 iconsPadding colorIcons" title="Agregar">
+                <br>
+                <svg width="50" height="50" fill="currentColor" class="bi bi-plus-circle-fill manito" viewBox="0 0 30 30" (click)="createConductor()">
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                </svg>
+              </div>
+						</div>
+						<div class="row">							
+							<div class="col">
+                <div class="form-group">
+                  <label for="SelectEstado" class="control-label">Producto</label>
+                  <select class="form-control" name="pro_Codigo" [(ngModel)]="pesajes.pro_Codigo"
+                  [ngClass]="{'is-invalid': f.submitted && f.controls['pro_Codigo'].errors}"
+                  required>
+                    <option *ngFor="let producto of listProductos" [value]="producto.pro_Codigo">{{ producto.pro_Nombre }}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-1 iconsPadding colorIcons" title="Agregar">
+                <br>
+                <svg width="50" height="50" fill="currentColor" class="bi bi-plus-circle-fill manito" viewBox="0 0 30 30" (click)="createProducto()">
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                </svg>
+              </div>
+							<div class="col"></div>
+						</div>
+            <div class="row">
+              <div class="col">
+                <br>
+                <button type="submit" class="btn btn-success">Crear</button>
+              </div>
+              <div class="col">
+                <br>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"
+                  (click)="activeModal.close('close')">Cerrar</button>
+              </div>
+            </div>
+          </form>
+
+          <form enctype="multipart/form-data" method="POST" *ngIf="tittle == 'ACTUALIZAR'"
+            (ngSubmit)="onSubmitUpdate(f)" #f="ngForm" class="container">
+						<div class="row">
+							<div class="col">
+								<div class="form-group">
+									<label for="SelectEstado" class="control-label">Tipo Pesaje</label>
+									<select class="form-control" placeholder="Seleccione Tipo Pesaje" name="pesa_Tipo_Pesaje"
+										[(ngModel)]="pesajes2.pesa_Tipo_Pesaje"
+										value="{{ pesajes2.pesa_Tipo_Pesaje }}">
+										<option class="selectDark" value="">Seleccione...</option>
+										<option class="selectDark" value="Entrada">Entrada</option>
+										<option class="selectDark" value="Salida">Salida</option>
+									</select>
+								</div>
+							</div>
+							<div class="col">
+                <div class="form-group">
+                  <label for="SelectEstado" class="control-label">Transportadora</label>
+                  <select class="form-control" name="tran_Codigo" [(ngModel)]="pesajes2.tran_Codigo"
+                  [ngClass]="{'is-invalid': f.submitted && f.controls['tran_Codigo'].errors}"
+                  required>
+                    <option *ngFor="let company of listCompany" [value]="company.tran_Codigo">{{ company.tran_Nombre }}</option>
+                  </select>
+                </div>
+              </div>
+              <div class="col-1 iconsPadding colorIcons" title="Agregar">
+                <br>
+                <svg width="50" height="50" fill="currentColor" class="bi bi-plus-circle-fill manito" viewBox="0 0 30 30" (click)="createEmpresa()">
+                  <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zM8.5 4.5a.5.5 0 0 0-1 0v3h-3a.5.5 0 0 0 0 1h3v3a.5.5 0 0 0 1 0v-3h3a.5.5 0 0 0 0-1h-3v-3z"/>
+                </svg>
+              </div>
+            </div>
+						<div class="row">
+							<div class="col">
+                <div class="form-group">
+                  <label for="SelectEstado" class="control-label">Vehiculos</label>
+                  <select class="form-control" name="veh_Codigo" [(ngModel)]="pesajes2.veh_Codigo"
+                  [ngClass]="{'is-invalid': f.submitted && f.controls['veh_Codigo'].errors}"
+                  required>
+                    <option *ngFor="let vehiculo of listVehiculo" [value]="vehiculo.veh_Codigo">{{ vehiculo.veh_Placa }}</option>
+                  </select>
+                </div>
+              </div>
+							<div class="col">
+                <div class="form-group">
+                  <label for="SelectEstado" class="control-label">Conductor</label>
+                  <select class="form-control" name="cond_Codigo" [(ngModel)]="pesajes2.cond_Codigo"
+                  [ngClass]="{'is-invalid': f.submitted && f.controls['cond_Codigo'].errors}"
+                  required>
+                    <option *ngFor="let conductor of listConductor" [value]="conductor.cond_Codigo">{{ conductor.cond_Nombre }}</option>
+                  </select>
+                </div>
+              </div>
+						</div>
+						<div class="row">							
+							<div class="col">
+                <div class="form-group">
+                  <label for="SelectEstado" class="control-label">Producto</label>
+                  <select class="form-control" name="pro_Codigo" [(ngModel)]="pesajes2.pro_Codigo"
+                  [ngClass]="{'is-invalid': f.submitted && f.controls['pro_Codigo'].errors}"
+                  required>
+                    <option *ngFor="let producto of listProductos" [value]="producto.pro_Codigo">{{ producto.pro_Nombre }}</option>
+                  </select>
+                </div>
+              </div>
+							<div class="col"></div>
+						</div>
+            <div class="row">
+              <div class="col">
+                <br>
+                <button type="submit" class="btn btn-success">Actualizar</button>
+              </div>
+              <div class="col">
+                <br>
+                <button type="button" class="btn btn-danger" data-dismiss="modal"
+                  (click)="activeModal.close('close')">Cerrar</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

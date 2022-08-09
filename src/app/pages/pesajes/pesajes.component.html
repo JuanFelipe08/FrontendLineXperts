@@ -1,0 +1,65 @@
+<div class="content">
+  <div class=" row">
+    <div class=" col-md-12 col-sm-12 col-lg-12">
+      <div class="card">
+        <div class="card-header">
+          <div class="row">
+            <div class="col title">
+              <h3 class=" card-title">PESAJES</h3>
+            </div>
+          </div>
+          &nbsp;&nbsp;
+          <div class=" row">
+						<div class=" col-2">
+							<button class="btn btn-success" (click)="createPesajes()">Crear</button>
+						</div>
+          </div>
+        </div>
+        <div class=" card-body">
+          <div class=" table-responsive list_container">
+
+            <table class="table table-striped tablesorter">
+              <thead>
+                <tr>
+                  <th class="text-center">Tipo</th>
+                  <th class="text-center">Producto</th>
+                  <th class="text-center">Vehiculo</th>
+                  <th class="text-center">Conductor</th>
+                  <th class="text-center">Transportadora</th>
+                  <th class="text-center">Estado</th>
+                  <th class="text-center"></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let pesaje of listPesajes">
+                  <td align="center">{{ pesaje.pesa_Tipo_Pesaje }}</td>
+                  <td align="center">{{ pesaje.productos.pro_Nombre }}</td>
+                  <td align="center">{{ pesaje.vehiculos.veh_Placa }}</td>
+                  <td align="center">{{ pesaje.conductores.cond_Nombre }}</td>
+                  <td align="center">{{ pesaje.transportadora.tran_Nombre }}</td>
+                  <td align="center" *ngIf="pesaje.pesa_Anulado == 0;else inactivo">Activo</td>
+                  <ng-template #inactivo>
+                    <td align="center">Inactivo</td>
+                  </ng-template>
+                  <td align="center" title="Editar">
+                    <svg
+                      width="16"
+                      height="16"
+                      fill="currentColor"
+                      class="bi bi-pencil-square manito colorIcons"
+                      viewBox="0 0 16 16"
+                      (click)="updatePesajes(pesaje)"
+                    >
+                      <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z"/>
+                      <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z"/>
+                    </svg>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
